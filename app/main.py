@@ -14,7 +14,6 @@ class Dictionary:
         self.capacity = capacity
         self.load_factor = load_factor
         self.size = 0
-        self.length = 0
         self.table = [None] * self.capacity
 
     def __hash_function(self, key: Any) -> int:
@@ -50,7 +49,6 @@ class Dictionary:
         new_node.next = self.table[index]
         self.table[index] = new_node
         self.size += 1
-        self.length += 1
 
         if self.size / self.capacity > self.load_factor:
             self.__resize()
@@ -67,7 +65,7 @@ class Dictionary:
         raise KeyError(f"Key '{key}' not in dictionary")
 
     def __len__(self) -> int:
-        return self.length
+        return self.size
 
     def __repr__(self) -> str:
         items = []
